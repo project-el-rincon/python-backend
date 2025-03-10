@@ -1,5 +1,15 @@
 # Python Backend for Smart Building Project
 
+## REST API Scheme
+- Room
+- time
+- Energy usage / temperature / humidity / Lights / CO2 / volume / Motion
+- value
+
+## MQTT Topic Scheme
+
+`school/sensortype`
+
 
 # README
 
@@ -94,3 +104,4 @@ CREATE TABLE IF NOT EXISTS "has" (
 | MeasurmentID | SensorID |
 | -------- | -------- | 
 | Integer     | Integer     | 
+
