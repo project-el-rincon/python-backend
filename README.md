@@ -9,9 +9,9 @@
 
 
 https://luolingchun.github.io/flask-openapi3/v3.x/Usage/Specification/
-
-# DB NAME: home_data
-# DB PASSWORD: vBujy@vvXjOVCcuD
+## Secrets:
+- DB NAME: home_data
+- DB PASSWORD: vBujy@vvXjOVCcuD
 
 ## MQTT Topic Scheme
 
