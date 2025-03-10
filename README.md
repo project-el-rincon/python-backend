@@ -3,9 +3,6 @@
 
 # README
 
-[TOC]
-
----
 
 ## General Information
 
