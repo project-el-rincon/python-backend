@@ -121,7 +121,6 @@ def controll_device(body: Data):
         "topic":body.topic,
         "value":body.value
     }
-    mqttHandler.publishControlAction(mqttHandler.client, json.dumps(jstring), body.topic)
     """
     To controll a device in the room like 
     - Lights 
@@ -130,6 +129,7 @@ def controll_device(body: Data):
 
     Valid Topics: ["school/energy", "school/temperature", "school/humidity", "school/light", "school/co2", "school/volume", "school/motion", "school/tvoc"]
     """
+    mqttHandler.publishControlAction(mqttHandler.client, json.dumps(jstring), body.topic)
     return {}
 
 
