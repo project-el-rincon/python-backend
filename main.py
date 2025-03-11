@@ -116,11 +116,6 @@ def get_all_room():
 
 @app.post("/device", summary="to control a device", tags=[device_tag])
 def controll_device(body: Data):
-    jstring = {
-        "sensorID":body.sensorID,
-        "topic":body.topic,
-        "value":body.value
-    }
     """
     To controll a device in the room like 
     - Lights 
@@ -129,6 +124,11 @@ def controll_device(body: Data):
 
     Valid Topics: ["school/energy", "school/temperature", "school/humidity", "school/light", "school/co2", "school/volume", "school/motion", "school/tvoc"]
     """
+    jstring = {
+        "sensorID":body.sensorID,
+        "topic":body.topic,
+        "value":body.value
+    }
     mqttHandler.publishControlAction(mqttHandler.client, json.dumps(jstring), body.topic)
     return {}
 
