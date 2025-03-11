@@ -40,8 +40,28 @@ def get_all_room():
     """
     to get rooms
     """
-    command = "SELECT * FROM Room LEFT JOIN SensorData USING (RoomID)"
-    data = connection.cmd_query(command)
+    command = "SELECT SensorData.MeasurementID, SensorData.TimeStamp, SensorData.SensorType, SensorData.Value, RoomID, Room.Name, Room.Location FROM Room JOIN SensorData USING (RoomID) ORDER BY SensorData.MeasurementID;"
+    cursor = connection.cursor()
+    cursor.execute(command)
+    data = cursor.fetchall()
+    handled_data = []
+    for row in data:
+        room_id = row[4]
+        room_data = {
+            "MeasurementID": row[0],
+            "TimeStamp": row[1],
+            "SensorType": row[2],
+            "Value": row[3],
+            "RoomID": row[4],
+            "Name": row[5],
+            "Location": row[6]
+        }
+        room_found = next((item for item in handled_data if item["roomid"] == room_id), None)
+        if room_found:
+            room_found["data"].append(room_data)
+        else:
+            handled_data.append({"roomid": room_id, "data": [room_data]})
+        data = handled_data
     return {
         "code": 0,
         "message": "ok",
@@ -65,4 +85,4 @@ def controll_device(path: RoomControlDeviceRoute, body: Devices):
 
                          
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True, port=5001, host="0.0.0.0")
