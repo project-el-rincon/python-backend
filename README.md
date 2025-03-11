@@ -1,7 +1,5 @@
 # Python Backend for Smart Building Project
 
-[TOC]
-
 ## REST API Scheme
 - Room
 - time
