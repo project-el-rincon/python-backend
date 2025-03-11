@@ -1,4 +1,6 @@
-from mysql.connector import Error
+from typing import Optional
+from mysql.connector import Error, MySQLConnection
+from mysql.connector.types import RowType
 
 import mysql.connector
 
@@ -22,6 +24,26 @@ def close_connection(connection):
         connection.close()
         print("MySQL connection is closed")
 
+def execute_select_query(connection: MySQLConnection, query: str) -> Optional[Error] | Optional[list[RowType]]:
+    try:
+        cursor = connection.cursor()
+        cursor.execute(query)
+        print("Query executed successfully")
+        return cursor.fetchall()
+    except Error as e:
+        print(f"Error: '{e}'")
+        return e
+
+def execute_command_with_write(connection: MySQLConnection, query: str) -> Optional[Error]:
+    try:
+        cursor = connection.cursor()
+        cursor.execute(query)
+        connection.commit()
+        print("Query executed successfully")
+        return None
+    except Error as e:
+        print(f"Error: '{e}'")
+        return e
 # # Example usage
 # if __name__ == "__main__":
 #     conn = create_connection()
