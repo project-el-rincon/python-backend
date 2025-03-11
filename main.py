@@ -120,7 +120,7 @@ def controll_device(path: RoomControlDeviceRoute, body: Devices):
     - ... 
 
 
-    ´´´Valid Topics: ["school/energy", "school/temperature", "school/humidity", "school/light", "school/co2", "school/volume", "school/motion", "school/tvoc"]´´´
+    Valid Topics: ["school/energy", "school/temperature", "school/humidity", "school/light", "school/co2", "school/volume", "school/motion", "school/tvoc"]
     """
     return {
         "value": 0,
