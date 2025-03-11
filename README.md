@@ -3,7 +3,7 @@
 ## REST API Scheme
 - Room
 - time
-- Energy usage / temperature / humidity / Lights / CO2 / volume / Motion
+- Energy usage / temperature / humidity / Lights / CO2 / tvoc / volume / Motion
 - value
 
 ## MQTT Topic Scheme
