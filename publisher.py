@@ -34,8 +34,7 @@ def publish(client):
     while True:
         time.sleep(1)
         msg = '{"location":"Room Number","timestamp":"2025-03-11 10:18:20","value":0.23}'
-        for i in topics:
-            result = client.publish(i, msg)
+        result = client.publish(topics[0], msg)
 
         # result: [0, 1]
         status = result[0]
@@ -43,9 +42,7 @@ def publish(client):
             print(f"Send `{msg}` to topic `{topic}`")
         else:
             print(f"Failed to send message to topic {topic}")
-        msg_count = 1
-        if msg_count > 5:
-            break
+        msg_count += 1
 
 
 
@@ -59,5 +56,5 @@ def run():
     client.loop_stop()
 
 
-# if __name__ == '__main__':
-#     run()
+if __name__ == '__main__':
+    run()

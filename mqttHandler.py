@@ -27,19 +27,21 @@ def connect_mqtt() -> mqtt_client:
     return client
 
 
+
 def subscribe(client: mqtt_client):
     def on_message(client, userdata, msg):
+        
         print(f"Received `{msg.payload.decode()}` from `{msg.topic}` topic")
-        data = json.loads(msg.payload.decode())
+        # data = json.loads(msg.payload.decode())
         #### SQL Here ####
-                
-    for i in topics:
-        client.subscribe(i)
+    for topic in topics:
+        print(topic)
+        client.subscribe(topic, qos=0)
     client.on_message = on_message
 
 
-def publishControlAction(client, command, topic):
-    result = client.publish(topic, str(command))
+def publishControlAction(clienta, command, topic):
+    result = clienta.publish(topic, str(command), qos=0)
     if result[0] == 0:
         return True
     else:
@@ -52,5 +54,4 @@ def run():
     client.loop_forever()
 
 
-if __name__ == '__main__':
-    run()
+
