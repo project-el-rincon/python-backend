@@ -17,14 +17,26 @@ https://luolingchun.github.io/flask-openapi3/v3.x/Usage/Specification/
 
 `school/sensortype`
 
+Valid Topics: `["school/energy", "school/temperature", "school/humidity", "school/light", "school/co2", "school/volume", "school/motion", "school/tvoc"]`
+
 ## MQTT Message Scheme
 
+### Sensor send
 ```json
 {
 	"location":"Room Number",
 	"timestamp":"2025-03-11 10:18:20",
 	"value":0.23
 
+}
+```
+
+### Sensor recive
+```json
+{
+  "sensorID": "1234",
+  "topic": "school/light",
+  "value": 1
 }
 ```
 
