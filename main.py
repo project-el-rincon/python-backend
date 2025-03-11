@@ -4,7 +4,7 @@ from flask_openapi3 import Info, Tag
 from flask_openapi3 import OpenAPI
 from database import create_connection, close_connection
 import mqttHandler
-
+import json
 
 info = Info(title="book API", version="1.0.0")
 app = OpenAPI(__name__, info=info)
@@ -19,7 +19,10 @@ class RoomRoute(BaseModel):
     rid: int = Field(..., title="Room ID", description="Room ID")
 
 class Data(BaseModel):
-    abc: str = Field(...,title="MQTT Command", description="")
+    sensorID: str = Field(...,title="SensorID", description="The ID of the sensor")
+    topic: str = Field(...,title="topic", description="the MQTT Topic")
+    value: float = Field(...,title="value", description="Value to change to")
+
 
 class Devices(BaseModel):
     mqttTopic: str = Field(...,title="MQTT Topic", description="Enter the device type in a topic format (school/light)")
@@ -111,21 +114,20 @@ def get_all_room():
         "data": data
     }
 
-@app.post("/device/<int:did>", summary="to controll a device", tags=[device_tag])
-def controll_device(path: RoomControlDeviceRoute, body: Devices):
-    mqttHandler.publishControlAction(mqttHandler.client, body.command, body.mqttTopic)
+@app.post("/device", summary="to control a device", tags=[device_tag])
+def controll_device(body: Data):
+    jstring = {
+        "sensorID":body.sensorID,
+        "topic":body.topic,
+        "value":body.value
+    }
+    mqttHandler.publishControlAction(mqttHandler.client, json.dumps(jstring), body.topic)
     """
     To controll a device in the room like 
     - Lights 
     - ... 
     """
-    return {
-        "value": 0,
-        "": "ok",
-        "data": {
-            "id": str(path.rid)
-        }
-    }
+    return {}
 
 
 
