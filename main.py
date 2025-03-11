@@ -22,10 +22,18 @@ class RoomControlDeviceRoute(BaseModel):
     rid: int = Field(..., title="Room ID", description="Room ID")
     did: int = Field(..., title="Device ID", description="Device ID")
     
-@app.get("/room/<int:rid>", summary="get data from room", tags=[room_tag])
+@app.get("/room/<int:rid>", summary="get data from a specific room", tags=[room_tag])
 def get_room(path: RoomRoute):
     """
-    to get rooms
+    Get date from a specific room like 
+    - Energy usage
+    - Temperature
+    - Humidity
+    - Lights
+    - Co2 level
+    - Volume
+    - If ther is Motion in the room
+
     """
     return {
         "code": 0,
@@ -38,7 +46,14 @@ def get_room(path: RoomRoute):
 @app.get("/room", summary="get all data from all rooms", tags=[room_tag])
 def get_all_room():
     """
-    to get rooms
+    Get the data from all the rooms 
+    - Energy usage
+    - Temperature
+    - Humidity
+    - Lights
+    - Co2 level
+    - Volume
+    - If ther is Motion in the room
     """
     command = "SELECT * FROM Room LEFT JOIN SensorData USING (RoomID)"
     data = connection.cmd_query(command)
@@ -48,10 +63,12 @@ def get_all_room():
         "data": data
     }
 
-@app.post("/room/<int:rid>/device/<int:did>", summary="get device  from room", tags=[device_tag])
+@app.post("/room/<int:rid>/device/<int:did>", summary="to controll a device", tags=[device_tag])
 def controll_device(path: RoomControlDeviceRoute, body: Devices):
     """
-    to get rooms
+    To controll a device in the room like 
+    - Lights 
+    - ... 
     """
     return {
         "value": 0,
