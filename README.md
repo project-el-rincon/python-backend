@@ -6,7 +6,7 @@
 - Energy usage / temperature / humidity / Lights / CO2 / volume / Motion
 - value
 
-==**[Flask-Openapi3](https://luolingchun.github.io/flask-openapi3/v3.x/Usage/Specification/)**==
+**[Flask-Openapi3](https://luolingchun.github.io/flask-openapi3/v3.x/Usage/Specification/)**
 
 ## Secrets:
 - DB NAME: home_data
