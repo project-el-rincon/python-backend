@@ -8,7 +8,8 @@ from paho.mqtt import client as mqtt_client
 
 broker = '192.168.211.155'
 port = 1883
-topic = "python/mqtt"
+topic = "school/energy"
+topics = ["school/energy", "school/temperature", "school/humidity", "school/light", "school/co2", "school/volume", "school/motion", "school/tvoc"]
 # Generate a Client ID with the publish prefix.
 client_id = f'publish-{random.randint(0, 1000)}'
 # username = 'emqx'
@@ -32,8 +33,10 @@ def publish(client):
     msg_count = 1
     while True:
         time.sleep(1)
-        msg = f"messages: {msg_count}"
-        result = client.publish(topic, msg)
+        msg = '{"location":"Room Number","timestamp":"2025-03-11 10:18:20","value":0.23}'
+        for i in topics:
+            result = client.publish(i, msg)
+
         # result: [0, 1]
         status = result[0]
         if status == 0:
@@ -45,6 +48,10 @@ def publish(client):
             break
 
 
+
+
+
+
 def run():
     client = connect_mqtt()
     client.loop_start()
@@ -52,5 +59,5 @@ def run():
     client.loop_stop()
 
 
-if __name__ == '__main__':
-    run()
+# if __name__ == '__main__':
+#     run()
