@@ -22,7 +22,7 @@ https://luolingchun.github.io/flask-openapi3/v3.x/Usage/Specification/
 ```json
 {
 	"location":"Room Number",
-	"timesamp":"2025-03-11 10:18:20",
+	"timestamp":"2025-03-11 10:18:20",
 	"value":0.23
 
 }
