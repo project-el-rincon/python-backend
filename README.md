@@ -17,6 +17,16 @@ https://luolingchun.github.io/flask-openapi3/v3.x/Usage/Specification/
 
 `school/sensortype`
 
+## MQTT Message Scheme
+
+```json
+{
+	"location":"Room Number",
+	"timesamp":"2025-03-11 10:18:20",
+	"value":0.23
+
+}
+```
 
 # README
 
