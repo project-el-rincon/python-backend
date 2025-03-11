@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS `SensorData` (
     `RoomID` INT,
     `TimeStamp` INT,
     `SensorType` VARCHAR(255),
-    `Values` INT,
+    `Value` INT,
     PRIMARY KEY(`MeasurementID`),
     FOREIGN KEY(`RoomID`) REFERENCES `Room`(`RoomID`)
 );
