@@ -36,7 +36,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`SensorData` (
   `RoomID` INT NULL,
   `TimeStamp` VARCHAR(45) NULL,
   `SensorType` VARCHAR(45) NULL,
-  `Values` INT NULL,
+  `Value` INT NULL,
   PRIMARY KEY (`MeasurementID`),
   CONSTRAINT `RoomID`
     FOREIGN KEY ()
