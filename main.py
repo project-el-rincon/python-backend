@@ -4,8 +4,10 @@ from flask_openapi3 import Info, Tag
 from flask_openapi3 import OpenAPI
 from database import create_connection, close_connection
 
+
 info = Info(title="book API", version="1.0.0")
 app = OpenAPI(__name__, info=info)
+
 
 room_tag = Tag(name="room", description="Room")
 device_tag = Tag(name="devices", description="Devices")
@@ -103,3 +105,4 @@ def controll_device(path: RoomControlDeviceRoute, body: Devices):
                          
 if __name__ == "__main__":
     app.run(debug=True, port=5001, host="0.0.0.0")
+
