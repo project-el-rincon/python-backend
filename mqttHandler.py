@@ -1,9 +1,10 @@
 import json
 import random
 from paho.mqtt import client as mqtt_client
+import database
 
-
-broker = '192.168.211.155'
+conn = database.create_connection()
+broker = '192.168.0.52'
 port = 1883
 # topic = "school/energy"
 topics = ["school/energy", "school/temperature", "school/humidity", "school/light", "school/co2", "school/volume", "school/motion", "school/tvoc"]
@@ -32,7 +33,8 @@ def subscribe(client: mqtt_client):
     def on_message(client, userdata, msg):
         
         print(f"Received `{msg.payload.decode()}` from `{msg.topic}` topic")
-        # data = json.loads(msg.payload.decode())
+        data = json.loads(msg.payload.decode())
+        database.execute_command_with_write(conn, f"""INSERT INTO "Measurement" VALUES ('{data["location"]}','{data["timestamp"]}','{msg.topic}',{data["value"]});""")
         #### SQL Here ####
     for topic in topics:
         print(topic)

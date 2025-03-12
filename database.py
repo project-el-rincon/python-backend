@@ -7,7 +7,7 @@ import mysql.connector
 def create_connection():
     try:
         connection = mysql.connector.connect(
-            host='192.168.211.155',
+            host='192.168.0.52',
             user='home_data',
             password='vBujy@vvXjOVCcuD',
             database='home_data'

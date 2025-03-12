@@ -6,7 +6,7 @@ import time
 from paho.mqtt import client as mqtt_client
 
 
-broker = '192.168.211.155'
+broker = '192.168.0.52'
 port = 1883
 topic = "school/energy"
 topics = ["school/energy", "school/temperature", "school/humidity", "school/light", "school/co2", "school/volume", "school/motion", "school/tvoc"]
